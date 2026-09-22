@@ -1,5 +1,84 @@
-<html>
-    <body>
-        <h1>Welcome to My Website</h1>
-        <p>This is the home page of my website. Feel free to explore!</p>
-</html>
+<style>
+.nav-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  padding: 18px 10px;
+  border-bottom: 1px solid #e5e7eb;
+  font-family: Arial, sans-serif;
+  white-space: nowrap;
+  overflow-x: auto;
+}
+
+.nav-row a {
+  color: #1f2937;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 8px 0;
+}
+
+.nav-row a:hover {
+  color: #7657ff;
+}
+
+.nav-row a.active {
+  color: #7657ff;
+}
+
+@media (max-width: 900px) {
+  .nav-row {
+    justify-content: flex-start;
+    gap: 22px;
+  }
+
+  .nav-row a {
+    font-size: 14px;
+  }
+}
+</style>
+
+<div class="nav-row">
+
+  <a href="#at-a-glance" class="active">
+    At a Glance
+  </a>
+
+  <a href="#opportunities">
+    Opportunities &amp; Hiring
+  </a>
+
+  <a href="#focus">
+    Focus Areas
+  </a>
+
+  <a href="#hits">
+    Hits &amp; Misses
+  </a>
+
+  <a href="#quarter">
+    Quarter Focus
+  </a>
+
+  <a href="#genai">
+    GenAI Adoption
+  </a>
+
+  <a href="#joiners">
+    New Joiners
+  </a>
+
+  <a href="#leads">
+    Leads
+  </a>
+
+  <a href="#meet">
+    Meet Recap
+  </a>
+
+  <a href="#rewards">
+    Rewards
+  </a>
+
+</div>
