@@ -3,308 +3,134 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mobile Competency Newsletter</title>
-  <style>
-    :root {
-      --navy: #0b1f4d;
-      --navy-deep: #071536;
-      --sky: #5eb8ff;
-      --purple: #6b5bff;
-      --text: #1a2332;
-      --muted: #6b7280;
-      --line: #e5e7eb;
-      --bg: #f7f8fb;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
-      color: var(--text);
-      background: #fff;
-      line-height: 1.5;
-    }
-    a { color: inherit; text-decoration: none; }
-
-    /* Top page nav */
-    .site-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 14px 28px;
-      border-bottom: 1px solid var(--line);
-      background: #fff;
-      position: sticky;
-      top: 0;
-      z-index: 40;
-    }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 700;
-      font-size: 15px;
-      white-space: nowrap;
-    }
-    .brand-mark {
-      width: 28px;
-      height: 28px;
-      border-radius: 8px;
-      background: linear-gradient(135deg, var(--navy), var(--sky));
-      color: #fff;
-      display: grid;
-      place-items: center;
-      font-size: 12px;
-      font-weight: 800;
-    }
-    .top-nav {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 18px;
-      justify-content: flex-end;
-      font-size: 14px;
-      font-weight: 600;
-    }
-    .top-nav a:hover { color: var(--purple); }
-    .top-nav a.active { color: var(--purple); }
-
-    /* Hero */
-    .hero {
-      background: radial-gradient(1200px 400px at 50% 0%, #163a7a 0%, var(--navy) 45%, var(--navy-deep) 100%);
-      color: #fff;
-      text-align: center;
-      padding: 64px 20px 72px;
-    }
-    .hero-pill {
-      display: inline-block;
-      border: 1px solid rgba(255,255,255,0.35);
-      border-radius: 999px;
-      padding: 6px 14px;
-      font-size: 12px;
-      letter-spacing: 0.04em;
-      margin-bottom: 18px;
-      color: #dbeafe;
-    }
-    .hero h1 {
-      font-size: clamp(28px, 5vw, 48px);
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      margin-bottom: 12px;
-    }
-    .hero h1 span { color: var(--sky); }
-    .hero-issue {
-      font-size: 13px;
-      letter-spacing: 0.12em;
-      font-weight: 600;
-      opacity: 0.9;
-      margin-bottom: 14px;
-    }
-    .hero p {
-      max-width: 640px;
-      margin: 0 auto;
-      font-size: 15px;
-      opacity: 0.85;
-    }
-
-    /* Section tabs (same-page scroll) */
-    .section-tabs {
-      display: flex;
-      justify-content: center;
-      gap: 28px;
-      padding: 16px 20px;
-      border-bottom: 1px solid var(--line);
-      background: #fff;
-      top: 57px;
-      z-index: 30;
-      overflow-x: auto;
-      white-space: nowrap;
-      -webkit-overflow-scrolling: touch;
-    }
-    .section-tabs a {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--text);
-      padding: 6px 0;
-      border-bottom: 2px solid transparent;
-    }
-    .section-tabs a:hover,
-    .section-tabs a.active {
-      color: var(--purple);
-      border-bottom-color: var(--purple);
-    }
-
-    /* Content */
-    main { background: var(--bg); }
-    .section {
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 56px 20px 20px;
-      scroll-margin-top: 130px;
-    }
-    .eyebrow {
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 0.14em;
-      color: var(--purple);
-      margin-bottom: 8px;
-    }
-    .eyebrow.blue { color: #3b82f6; }
-    .section h2 {
-      font-size: clamp(26px, 4vw, 36px);
-      color: var(--navy);
-      margin-bottom: 8px;
-      letter-spacing: -0.02em;
-    }
-    .section .lead {
-      color: var(--muted);
-      margin-bottom: 24px;
-      max-width: 620px;
-    }
-
-    .metrics {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      overflow: hidden;
-    }
-    .metric {
-      text-align: center;
-      padding: 28px 16px;
-      border-right: 1px solid var(--line);
-    }
-    .metric:last-child { border-right: none; }
-    .metric strong {
-      display: block;
-      font-size: 40px;
-      color: var(--navy);
-      line-height: 1.1;
-      margin-bottom: 6px;
-    }
-    .metric span {
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-    }
-
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-    }
-    .card {
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 20px;
-    }
-    .card h3 {
-      font-size: 16px;
-      margin-bottom: 8px;
-      color: var(--navy);
-    }
-    .card p, .card li { color: var(--muted); font-size: 14px; }
-    .card ul { padding-left: 18px; }
-
-    .two-col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-    .hit { border-left: 4px solid #22c55e; }
-    .miss { border-left: 4px solid #ef4444; }
-
-    footer {
-      text-align: center;
-      padding: 40px 20px 60px;
-      color: var(--muted);
-      font-size: 13px;
-      background: var(--bg);
-    }
-
-    @media (max-width: 800px) {
-      .site-header { flex-direction: column; align-items: flex-start; }
-      .top-nav { justify-content: flex-start; }
-      .section-tabs { justify-content: flex-start; top: 0; }
-      .metrics, .card-grid, .two-col { grid-template-columns: 1fr; }
-      .metric { border-right: none; border-bottom: 1px solid var(--line); }
-      .metric:last-child { border-bottom: none; }
-    }
-  </style>
+  <title>Home · Mobile Competency</title>
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-  <!-- <header class="site-header">
-    <div class="brand">
+  <!--
+  <header class="site-header">
+    <a class="brand" href="home.html">
       <div class="brand-mark">M</div>
       Mobile Competency Newsletter
-    </div>
+    </a>
     <nav class="top-nav" aria-label="Site">
-      <a href="index.html" class="active">Home</a>
-      <a href="#mobile-ai">GenAI</a>
-      <a href="#">Blogs</a>
-      <a href="#">Growth</a>
-      <a href="#">Learning</a>
-      <a href="#">Initiatives</a>
-      <a href="#rewards">Rewards</a>
-      <a href="#">Archive</a>
+      <a href="home.html" class="active">Home</a>
+      <a href="genai.html">GenAI</a>
+      <a href="blogs.html">Blogs</a>
+      <a href="growth.html">Growth</a>
+      <a href="learning.html">Learning</a>
+      <a href="initiatives.html">Initiatives</a>
+      <a href="compliances.html">Compliances</a>
+      <a href="rewards.html">Rewards</a>
+      <a href="archive.html">Archive</a>
     </nav>
-  </header> -->
+  </header>
+  -->
 
   <section class="hero">
     <div class="hero-pill">{ Mobile Competency }</div>
     <h1>Mobile Competency <span>Newsletter</span></h1>
     <div class="hero-issue">ISSUE · JULY 2026</div>
     <p>
-      Your deep-dive into Mobile — current state, AI adoption, hits &amp; misses,
-      new faces, and what’s next for apps across iOS, Android, and Flutter.
+      Overview and highlights across Android, iOS, React Native, and Flutter —
+      announcements, delivery pulse, and what’s next for the competency.
     </p>
   </section>
 
-  <!-- Same-page scroll menu -->
-  <nav class="section-tabs top-nav" id="sectionTabs" aria-label="On this page">
+  <nav class="section-tabs" id="sectionTabs" aria-label="On this page">
     <a href="#at-a-glance">At a Glance</a>
+    <a href="#announcements">Announcements</a>
+    <a href="#platforms">Platforms</a>
     <a href="#opportunities">Opportunities &amp; Hiring</a>
     <a href="#focus">Focus Areas</a>
     <a href="#hits">Hits &amp; Misses</a>
-    <a href="#quarter">Quarter Focus</a>
-    <a href="#mobile-ai">Mobile + AI</a>
-    <a href="#joiners">New Joiners</a>
-    <a href="#leads">Leads</a>
-    <a href="#meet">Meet Recap</a>
-    <a href="#rewards">Rewards</a>
+    <a href="#highlights">Key Highlights</a>
   </nav>
 
   <main>
     <section class="section" id="at-a-glance">
       <div class="eyebrow">SNAPSHOT</div>
       <h2>Mobile at a glance</h2>
-      <p class="lead">Current headcount, client mix, and where the mobile team sits across platforms.</p>
+      <p class="lead">Dummy snapshot of headcount, clients, and active work across the mobile stack.</p>
       <div class="metrics">
-        <div class="metric"><strong>38</strong><span>HEAD COUNT</span></div>
-        <div class="metric"><strong>9</strong><span>ACTIVE CLIENTS</span></div>
-        <div class="metric"><strong>14</strong><span>ACTIVE PROJECTS</span></div>
+        <div class="metric"><strong>42</strong><span>HEAD COUNT</span></div>
+        <div class="metric"><strong>11</strong><span>ACTIVE CLIENTS</span></div>
+        <div class="metric"><strong>18</strong><span>ACTIVE PROJECTS</span></div>
+      </div>
+    </section>
+
+    <section class="section" id="announcements">
+      <div class="eyebrow blue">UPDATES</div>
+      <h2>Announcements</h2>
+      <p class="lead">Key highlights and notices for the Mobile competency this issue.</p>
+      <div class="announcement">
+        <strong>Q3 Mobile Guild kickoff — 28 Jul</strong>
+        <span>All platforms · Hybrid · Agenda: release health, GenAI pilots, hiring bench</span>
+      </div>
+      <div class="announcement">
+        <strong>Shared CI template v2 rolled out for Flutter &amp; RN</strong>
+        <span>Faster PR checks · Store metadata lint · Crash-free gate</span>
+      </div>
+      <div class="announcement">
+        <strong>iOS 26 / Android 16 compatibility spike open</strong>
+        <span>Native chapters owning device lab matrix this sprint</span>
+      </div>
+    </section>
+
+    <section class="section" id="platforms">
+      <div class="eyebrow">STACK</div>
+      <h2>Platform mix</h2>
+      <p class="lead">Dummy distribution of people and projects by Android, iOS, React Native, and Flutter.</p>
+      <div class="card-grid four">
+        <div class="card">
+          <span class="platform-tag android">ANDROID</span>
+          <h3>12 engineers</h3>
+          <p>5 active apps · Kotlin-first · Play Console health &gt; 99.4%</p>
+        </div>
+        <div class="card">
+          <span class="platform-tag ios">IOS</span>
+          <h3>10 engineers</h3>
+          <p>4 active apps · SwiftUI adoption · TestFlight cadence weekly</p>
+        </div>
+        <div class="card">
+          <span class="platform-tag rn">REACT NATIVE</span>
+          <h3>11 engineers</h3>
+          <p>5 products · New Architecture pilots on 2 accounts</p>
+        </div>
+        <div class="card">
+          <span class="platform-tag flutter">FLUTTER</span>
+          <h3>9 engineers</h3>
+          <p>4 products · Shared design system + multi-flavor CI</p>
+        </div>
       </div>
     </section>
 
     <section class="section" id="opportunities">
       <div class="eyebrow blue">PIPELINE</div>
       <h2>Opportunities &amp; hiring</h2>
-      <p class="lead">What’s in motion next quarter, and where level-specific panels stand.</p>
+      <p class="lead">What’s in motion next quarter across platforms, and where panels stand.</p>
       <div class="card-grid">
         <div class="card">
           <h3>Active target pipelines</h3>
           <ul>
-            <li>Retail banking app modernization</li>
-            <li>Flutter multi-brand rollout</li>
-            <li>Store ops companion app</li>
+            <li>Android — retail banking app modernization</li>
+            <li>iOS — wealth companion redesign</li>
+            <li>React Native — field-ops super app</li>
+            <li>Flutter — multi-brand marketplace rollout</li>
           </ul>
         </div>
         <div class="card">
           <h3>Hiring panel alignment</h3>
-          <p>SE · Open &nbsp;|&nbsp; SSE · Active &nbsp;|&nbsp; Lead · Paused</p>
+          <div class="table-wrap" style="border: none; border-radius: 0;">
+            <table>
+              <thead><tr><th>LEVEL</th><th>STATUS</th></tr></thead>
+              <tbody>
+                <tr><td>SE (Android / Flutter)</td><td class="status open">OPEN</td></tr>
+                <tr><td>SSE (iOS / RN)</td><td class="status active">ACTIVE</td></tr>
+                <tr><td>Lead (Mobile)</td><td class="status paused">PAUSED</td></tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </section>
@@ -314,93 +140,50 @@
       <h2>Focus areas</h2>
       <p class="lead">Where Mobile competency is doubling down this quarter.</p>
       <div class="card-grid">
-        <div class="card"><h3>Flutter at scale</h3><p>Shared design system, module federation, CI for multi-flavor builds.</p></div>
-        <div class="card"><h3>Native excellence</h3><p>iOS/Android quality bars, accessibility, and performance budgets.</p></div>
+        <div class="card"><h3>Native excellence</h3><p>Android &amp; iOS quality bars, accessibility, and performance budgets.</p></div>
+        <div class="card"><h3>Cross-platform velocity</h3><p>RN New Architecture + Flutter module reuse across brands.</p></div>
         <div class="card"><h3>Release engineering</h3><p>Faster store releases, staged rollouts, crash-free sessions.</p></div>
-        <div class="card"><h3>Platform AI</h3><p>On-device + cloud AI features that ship safely in production apps.</p></div>
+        <div class="card"><h3>Mobile + AI</h3><p>On-device and cloud AI features shipping safely in production apps.</p></div>
       </div>
     </section>
 
     <section class="section" id="hits">
       <div class="eyebrow">RETROSPECTIVE</div>
       <h2>Hits &amp; misses</h2>
-      <p class="lead">What worked, and what we are correcting.</p>
+      <p class="lead">What worked across platforms, and what we are correcting.</p>
       <div class="two-col">
-        <div class="card hit"><h3>Hits</h3><ul><li>Zero P0 store rejections</li><li>Crash-free rate &gt; 99.5%</li></ul></div>
-        <div class="card miss"><h3>Misses</h3><ul><li>Design token sync lag</li><li>QA automation coverage gaps</li></ul></div>
+        <div class="card hit">
+          <h3>Hits</h3>
+          <ul>
+            <li>Zero P0 store rejections (Android + iOS)</li>
+            <li>Flutter crash-free rate &gt; 99.6%</li>
+            <li>RN Hermes migration completed on 3 apps</li>
+          </ul>
+        </div>
+        <div class="card miss">
+          <h3>Misses</h3>
+          <ul>
+            <li>Design token sync lag (Flutter ↔ Figma)</li>
+            <li>Detox coverage gaps on RN checkout flows</li>
+            <li>iOS snapshot test flakiness in CI</li>
+          </ul>
+        </div>
       </div>
     </section>
 
-    <section class="section" id="quarter">
-      <div class="eyebrow">ROADMAP</div>
-      <h2>Quarter focus</h2>
-      <p class="lead">North-star themes for the next 90 days across delivery and capability building.</p>
-      <div class="card"><p>Ship shared mobile CI templates, deepen Flutter hiring bench, and run two client AI pilots on mobile.</p></div>
-    </section>
-
-    <section class="section" id="mobile-ai">
-      <div class="eyebrow">GENAI</div>
-      <h2>Mobile + AI</h2>
-      <p class="lead">How the competency is adopting GenAI in app features and engineering workflows.</p>
-      <div class="card"><p>Copilot for PR reviews, on-device summarization experiments, and guarded prompt patterns for customer apps.</p></div>
-    </section>
-
-    <section class="section" id="joiners">
-      <div class="eyebrow">TEAM</div>
-      <h2>New joiners</h2>
-      <p class="lead">Welcome to the Mobile competency.</p>
-      <div class="card"><p>Placeholder — add names, roles, and buddy assignments here.</p></div>
-    </section>
-
-    <section class="section" id="leads">
-      <div class="eyebrow">LEADERSHIP</div>
-      <h2>Leads</h2>
-      <p class="lead">Practice leads and chapter owners.</p>
-      <div class="card"><p>Placeholder — add lead roster and focus areas.</p></div>
-    </section>
-
-    <section class="section" id="meet">
-      <div class="eyebrow">UPDATES</div>
-      <h2>Meet recap</h2>
-      <p class="lead">Highlights from the latest competency meet.</p>
-      <div class="card"><p>Placeholder — demo notes, decisions, and action items.</p></div>
-    </section>
-
-    <section class="section" id="rewards">
-      <div class="eyebrow">KUDOS</div>
-      <h2>Rewards</h2>
-      <p class="lead">Shout-outs and recognition across the Mobile team.</p>
-      <div class="card"><p>Placeholder — spot awards, certifications, and client kudos.</p></div>
+    <section class="section" id="highlights">
+      <div class="eyebrow green">HIGHLIGHTS</div>
+      <h2>Key highlights</h2>
+      <p class="lead">Quick wins and shout-outs from this newsletter cycle.</p>
+      <div class="card-grid three">
+        <div class="card"><h3>Play / App Store</h3><p>18 production releases · avg review time under 24h for iOS patches.</p></div>
+        <div class="card"><h3>Client demos</h3><p>3 successful UAT sign-offs spanning Android, RN, and Flutter.</p></div>
+        <div class="card"><h3>Knowledge</h3><p>4 internal tech talks published — see Blogs and Learning pages.</p></div>
+      </div>
     </section>
   </main>
 
-  <footer>Mobile Competency . To The New . 2026</footer>
-
-  <script>
-    const tabs = [...document.querySelectorAll("#sectionTabs a")];
-    const sections = tabs
-      .map((a) => document.querySelector(a.getAttribute("href")))
-      .filter(Boolean);
-
-    tabs.forEach((tab) => {
-      tab.addEventListener("click", () => {
-        tabs.forEach((t) => t.classList.remove("active"));
-        tab.classList.add("active");
-      });
-    });
-
-    const spy = () => {
-      const offset = 140;
-      let current = sections[0];
-      for (const section of sections) {
-        if (section.getBoundingClientRect().top - offset <= 0) current = section;
-      }
-      tabs.forEach((tab) => {
-        tab.classList.toggle("active", tab.getAttribute("href") === "#" + current.id);
-      });
-    };
-    window.addEventListener("scroll", spy, { passive: true });
-    spy();
-  </script>
+  <footer>Mobile Competency · To The New · 2026 · Dummy data for sample site</footer>
+  <script src="js/scroll-spy.js"></script>
 </body>
 </html>
